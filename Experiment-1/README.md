@@ -20,12 +20,19 @@ Procedure:
 4.Calculate the drain current value for the given power=1.2mW.
 Calculation:
 P=V*I  ---------(1)
+
 From 1st equation we will get I
+
 I=p/v
+
 I=0.6mA (assume I is 200mA because p<=1.2mw)
+
 Vout=VDD-I*Rd ---------(2)
+
 Vout=Vds(VDD/2)------(3)
+
 Subst 3 in 2 
+
 VDD/2=VDD-I*Rd
 From this equation v will get Rd as 5kohm
 Find W from Id equation 
