@@ -1,4 +1,5 @@
 COMMON SOURCE AMPLIFIER
+
 Aim:
 To perform the DC, Transient, AC Analysis of a Common Source amplifier circuit using LTSpice and extract the associated parameters.
 Components Required:
