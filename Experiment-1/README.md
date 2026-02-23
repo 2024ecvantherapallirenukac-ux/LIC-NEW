@@ -30,7 +30,7 @@ From 1st equation we will get I
 
 I=p/v
 
-I=0.6mA (assume I is 200mA because p<=1.2mw)
+I=0.6mA (assume I is 200uA/0.2mA because p<=1.2mw)
 
 Vout=VDD-I*Rd ---------(2)
 
@@ -67,7 +67,7 @@ DC Analysis is done to check if the MOSFET is operating in the saturation region
 
 From LT SPICE we are getting I has 186mA ,so vary the width to get I has 200mA if width increases ,current also will increase(directly proportional)
 
-At w=1.377u we will get I has 200mA .
+At w=1.377u we will get I has 200uA /0.2mA.
 
 AC Analysis
 
