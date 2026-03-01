@@ -43,42 +43,69 @@ calculation:
 NMOS:
 
 assume VRS=0.2V
+
 Vov=VGS-Vth
+
 VGS=0.61
+
 Vout=VDS+VRS
+
 Vout=VDD/2+VRS
+
 Vout=0.8v
+
 P=V*I--(1)
+
 I=0.2mA
+
 VG=VGS+VRS--(2)
+
 VG=0.61+0.2=0.81V
+
 VDs>=VGs-Vth--(3)
+
 VDs>=0.25v--(it is in saturation state)
+
 VRS=ID*Rs
+
 Rs=1kohm
 
 PMOS:
 
 Vov=VSG-|Vth|
 VSG=0.64
+
 VS-VG=0.64
+
 VS-0.64=VG--(4)  (VS=VDD=1.2V)
+
 VG=0.56V
 
 ID(PMOS)=Kn'*w*(vSG-|Vth|)^2/2*L ----(5)
+
 TOX=4.1*10^-9
+
 Eox=3.9*8.854*10^-12
+
 u0=115.689*10^-4
+
 solving 5th eq v will gwt W as
+
 W=11.823Um
 
 ID(NMOS)=Kn'*w*(vGS-Vth)^2/2*L ----(6)
+
 TOX=4.1*10^-9
+
 Eox=3.9*8.854*10^-12
+
 UO=273.809*10^-4
+
 from 6th equation v will gwt W as
+
 W=4.997*10^-6
 if we substitute this values in simulation we will get 
+
 ID has 100uA ,to get ID has 200uA ,we havw to increase the width of PMOS and NMOS
 
 Wpmos=58.823u
