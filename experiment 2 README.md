@@ -12,7 +12,8 @@ Components Required:
 TSMC 180nm NMOS transistor (CMOSN), PMOS transistor (CMOSP),source resistor and voltage sources(3)
 
 Circuit diagram:"
-C:\Users\renuka\Pictures\Screenshots\Screenshot 2026-03-01 163421.png"
+<img width="851" height="465" alt="Screenshot 2026-03-01 163421" src="https://github.com/user-attachments/assets/48f7c59e-aa57-41e8-9d14-b1ea8e3ee00d" />
+
 
 
 given parameters:
@@ -83,9 +84,12 @@ ID has 100uA ,to get ID has 200uA ,we havw to increase the width of PMOS and NMO
 Wpmos=58.823u
 Wnmos=25.9954u for this values we will get Id has 200uA
 
+![dc op](https://github.com/user-attachments/assets/8e3dce82-4d83-4abc-9e36-35f3344cd910)
+
 
 Transient analysis:
 
+![transient](https://github.com/user-attachments/assets/293f00bc-44b2-45de-8903-419de8eced36)
 
 Input:
 
@@ -104,6 +108,8 @@ Av ≈ 6.30 V/V
 Av(dB) ≈ 16 dB
 
 AC Analysis:
+![AC](https://github.com/user-attachments/assets/c94b1704-f67d-454e-a3df-cf30d93e5db4)
+<img width="1909" height="920" alt="BW" src="https://github.com/user-attachments/assets/69cbcd0d-016c-4931-a61b-e42a3fdd1635" />
 
 
 gm = 2ID / Vov
