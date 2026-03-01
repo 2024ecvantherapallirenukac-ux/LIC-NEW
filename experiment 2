@@ -2,6 +2,7 @@ Amplifier Configuration
 
 circuit -1
 
+
 Aim:
 
 To perform the DC, Transient, AC Analysis of a Common Source amplifier circuit using LTSpice and extract the associated parameters.
@@ -10,10 +11,12 @@ Components Required:
 
 TSMC 180nm NMOS transistor (CMOSN), PMOS transistor (CMOSP),source resistor and voltage sources(3)
 
-Circuit diagram:
+Circuit diagram:"
+C:\Users\renuka\Pictures\Screenshots\Screenshot 2026-03-01 163421.png"
+
 
 given parameters:
-Vov=0.25v,Vth=0.36,VDD=1.2,P<=0.4mw ,L=180nm
+Vov=0.25v,Vth=0.36(NMOS),Vth (PMOS)=-0.39V,VDD=1.2,P<=0.4mw ,L=180nm
 
 Procedure
 
@@ -34,6 +37,140 @@ procedure:
 2.Go to Simultae option in the tab and the DC opt option and click 'ok'.
 3.Click on run to run the circuit.
 4.DC operating point is obtained.
+
+calculation:
+NMOS:
+
+assume VRS=0.2V
+Vov=VGS-Vth
+VGS=0.61
+Vout=VDS+VRS
+Vout=VDD/2+VRS
+Vout=0.8v
+P=V*I--(1)
+I=0.2mA
+VG=VGS+VRS--(2)
+VG=0.61+0.2=0.81V
+VDs>=VGs-Vth--(3)
+VDs>=0.25v--(it is in saturation state)
+VRS=ID*Rs
+Rs=1kohm
+
+PMOS:
+
+Vov=VSG-|Vth|
+VSG=0.64
+VS-VG=0.64
+VS-0.64=VG--(4)  (VS=VDD=1.2V)
+VG=0.56V
+
+ID(PMOS)=Kn'*w*(vSG-|Vth|)^2/2*L ----(5)
+TOX=4.1*10^-9
+Eox=3.9*8.854*10^-12
+u0=115.689*10^-4
+solving 5th eq v will gwt W as
+W=11.823Um
+
+ID(NMOS)=Kn'*w*(vGS-Vth)^2/2*L ----(6)
+TOX=4.1*10^-9
+Eox=3.9*8.854*10^-12
+UO=273.809*10^-4
+from 6th equation v will gwt W as
+W=4.997*10^-6
+if we substitute this values in simulation we will get 
+ID has 100uA ,to get ID has 200uA ,we havw to increase the width of PMOS and NMOS
+
+Wpmos=58.823u
+Wnmos=25.9954u for this values we will get Id has 200uA
+
+
+Transient analysis:
+
+
+Input:
+
+SINE(0.81 10m 1k)
+
+10m = Peak amplitude
+
+Vin(p-p) = 20 mV
+
+Measured Vout ≈ 123 mV (approx)
+
+Av = Vout(p-p) / Vin(p-p)
+
+Av ≈ 6.30 V/V
+
+Av(dB) ≈ 16 dB
+
+AC Analysis:
+
+
+gm = 2ID / Vov
+
+gm = (2 × 200µA) / 0.25
+
+gm = 1.6 mS
+
+Assume λ = 0.1
+
+ro = 1 / (λ ID)
+
+ro = 1 / (0.1 × 200µA)
+
+ro = 50 kΩ
+
+(ro_n || ro_p) ≈ 25 kΩ
+
+Av = -gm (ro_n || ro_p) / (1 + gmRs)
+
+Av = (-1.6mS × 25kΩ) / (1 + (1.6mS × 1kΩ))
+
+Av ≈ -15.38 V/V
+
+Av(dB) = 20 log(15.38)
+
+Av(dB) = 23.74 dB
+
+High cutoff frequency (fH) = 376.34 MHz
+
+Low cutoff frequency (fL) ≈ 0 Hz
+
+Bandwidth:
+
+BW = 376.34 MHz
+
+Comparision:
+
+Theoretical Gain = 23.74 dB
+
+Simulated Gain = 16 dB
+
+Theoretical Av = 15.38 V/V
+
+Simulated Av = 6.30 V/V
+
+Bandwidth = 376 MHz
+
+Inference:
+
+Simulated gain is lower due to:
+
+Channel length modulation
+
+Source degeneration resistance
+
+Non-ideal MOS effects
+
+AC gain differs from transient gain due to small signal assumption in AC analysis.
+ result:
+
+
+
+
+
+
+
 
 
 
