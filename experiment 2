@@ -1,1 +1,39 @@
-v
+Amplifier Configuration
+
+circuit -1
+
+Aim:
+
+To perform the DC, Transient, AC Analysis of a Common Source amplifier circuit using LTSpice and extract the associated parameters.
+
+Components Required:
+
+TSMC 180nm NMOS transistor (CMOSN), PMOS transistor (CMOSP),source resistor and voltage sources(3)
+
+Circuit diagram:
+
+given parameters:
+Vov=0.25v,Vth=0.36,VDD=1.2,P<=0.4mw ,L=180nm
+
+Procedure
+
+1.Design the CS amplifier as per the circuit diagram using LTSpice.
+
+2.Set the components values as per the given parameters.
+
+3.Create a new folder and save the LTSpice file in this folder along with the library file
+
+4.Calculate the current value for the given power=0.4mw
+
+Dc Analysis:
+
+DC Analysis is done to check if the MOSFET is operating in the saturation region and to obtain the DC operation point.
+
+procedure:
+1.After setting up the circuit as per the circuit diagram, apply the dc voltage VDD=1.2V and Vgs=0.61
+2.Go to Simultae option in the tab and the DC opt option and click 'ok'.
+3.Click on run to run the circuit.
+4.DC operating point is obtained.
+
+
+
