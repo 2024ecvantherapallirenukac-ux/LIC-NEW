@@ -198,12 +198,25 @@ so at wp=49.6u and wn=33.567u we willl get Id has approx 200uA
 Transient analysis:
 <img width="1280" height="704" alt="trasneint 2c" src="https://github.com/user-attachments/assets/6d0aa6f1-23a9-4e63-846e-3aa3c336e83a" />
 
-AV=10.6
-AV(db)=20*log(10.6)
-     =20.506
+AV=10.18
+AV(db)=20*log(10.18)
+     =20.154
 
 AC analysis:
 <img width="1280" height="703" alt="AC analysis" src="https://github.com/user-attachments/assets/b6a50550-f025-4049-a6b1-860ec7911503" />
+
+Result:
+
+Circuit 3 gives the highest practical midband gain (~18.6 dB).
+
+
+Circuit 3 achieves highest UGB .
+
+Diode-connected load reduces gain but simplifies biasing.
+
+Gain-bandwidth trade-off clearly observed across circuits.
+
+ circuit validate 180 nm CMOS analog design principles.
 
 
      
