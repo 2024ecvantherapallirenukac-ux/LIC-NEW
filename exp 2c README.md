@@ -164,28 +164,28 @@ Rearranging for W: W = (2 ID L) / (µ Cox VOV²)
 
 NMOS Width Calculation
 Wn = (2 × 200×10⁻⁶ × 0.18×10⁻⁶)
-/ (0.02738 × 8.42×10⁻³ × (0.1)²)
+/ (0.02738 × 8.42×10⁻³ × (0.2)²)
 
 Numerator: = 7.2 × 10⁻¹¹
-Denominator: = 2.305 × 10⁻⁶
-Wn = 3.12 × 10⁻⁵ m
-Wn = 31.2 µm
+Denominator: = 9.22158× 10⁻⁶
+Wn = 7.8 × 10⁻6 m
+Wn = 7.8 µm
 
 NMOS Width
-Wn ≈ 31 µm
+Wn ≈ 7.8µm
 
 (M1 and M3 if identical)
 
 PMOS Width Calculation
 Wp = (2 × 200×10⁻⁶ × 0.18×10⁻⁶)
-/ (0.01157 × 8.42×10⁻³ × (0.1)²)
+/ (0.01157 × 8.42×10⁻³ × (0.2)²)
 
-Denominator: = 9.74 × 10⁻⁷
-Wp = 7.39 × 10⁻⁵ m
-Wp = 73.9 µm
+Denominator: = 3.89× 10⁻6
+Wp = 18× 10⁻6 m
+Wp = 18µm
 
 PMOS Width
-Wp ≈ 74 µm
+Wp ≈ 18 µm
  if we uplad this value in simulation we will get Id has 120uA ,to get Id has 200uA we should increase the wisth
 
 
