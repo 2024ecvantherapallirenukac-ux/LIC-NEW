@@ -1,4 +1,4 @@
-<img width="1068" height="647" alt="CIRCUIT2" src="https://github.com/user-attachments/assets/6829741e-ecc2-4387-9c51-3184c948c0e4" />#####DIFFERENTIAL AMPLIFIER
+
 
 ###CIRCUIT 1
 
@@ -296,12 +296,13 @@ BW = 7.21
 
 UGB = AV * BW 
 
-UGB = 74.47 
+UGB =  74.47 
 
    ######## CIRCUIT 2
 
-> ![Uploading CIRCUIT2.png<img width="628" height="656" alt="clipped 1" src="https://github.com/user-attachments/assets/ff6bf965-5b9c-4b01-a2a6-d22bd9d31cb1" /><img width="1279" height="695" alt="dc exp4 1" src="https://github.com/user-attachments/assets/0a6c0537-9892-45ca-94ef-0d2fe47b1ac3" />
-…]()
+><img width="628" height="656" alt="clipped 1" src="https://github.com/user-attachments/assets/6ed64915-7b79-42f7-9fa7-496dfb837621" />
+<img width="1068" height="647" alt="CIRCUIT2" src="https://github.com/user-attachments/assets/7f53f447-79a4-4fd1-95a8-5acdde94788d" />
+
 
 "Active load functionality is provided by the $M_3$–$M_4$ PMOS current mirror. $M_3$ serves as the diode-connected reference, while $M_4$ mirrors the current to the opposite branch, achieving a much higher output resistance than possible with standard resistors."
 
