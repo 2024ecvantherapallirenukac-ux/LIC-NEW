@@ -157,8 +157,7 @@ $$Gain(dB) = 20 \cdot \log_{10}(9) \approx \mathbf{19.1\text{dB}}$$
 | **Differential Gain** | $A_d$ | **9 V/V (19.1 dB)** |
 | **Output Type** | Differential | $V_{out1} - V_{out2}$ |
 
-> [!TIP]
-> **Simulation Note:** To verify this in LTspice, run the `.ac` analysis and plot `V(Vout1, Vout2) / V(V2, V3)`. The "negative" sign in the formula simply indicates a 180° phase shift between the input and output.
+# practical gain
 
 
 > 
