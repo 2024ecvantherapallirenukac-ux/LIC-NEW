@@ -152,7 +152,7 @@ $$A_d = -(2.94\text{mS}) \cdot (1.8\text{k}\Omega)$$
 $$A_d = \mathbf{-5.29\text{ V/V}}$$
 
 **In Decibels (dB):**
-$$Gain(dB) = 20 \cdot \log_{10}(9) \approx \mathbf{19.1\text{dB}}$$
+$$Gain(dB) = 20 \cdot \log_{10}(5.29) \approx \mathbf{14.46\text{dB}}$$
 
 ---
 
@@ -162,10 +162,116 @@ $$Gain(dB) = 20 \cdot \log_{10}(9) \approx \mathbf{19.1\text{dB}}$$
 | :--- | :--- | :--- |
 | **Transconductance** | $g_m$ | $5\text{mS}$ |
 | **Load Resistance** | $R_d$ | $1.8\text{k}\Omega$ |
-| **Differential Gain** | $A_d$ | **9 V/V (19.1 dB)** |
+| **Differential Gain** | $A_d$ | **9 V/V (14.469 dB)** |
 | **Output Type** | Differential | $V_{out1} - V_{out2}$ |
 
 # practical gain
+
+
+
+
+
+# vid<root2 Vov
+
+When the differential input voltage V_{id} (the difference between your two inputs $V_2$ and $V_3$) is less than $\sqrt{2} \cdot V_{ov}$ (where $V_{ov}$ is the overdrive voltage $V_{GS} - V_{th}$), the circuit is operating in its Linear Region.
+
+## 📉 Operation for $V_{id} < \sqrt{2}V_{ov}$ (Linear Region)
+
+When the differential input $V_{id}$ is small, both transistors ($M_1$ and $M_2$) remain **ON** and conduct a portion of the tail current. This is the intended operating range for an amplifier.
+
+---
+
+### 1. Current Steering Behavior
+In this range, the tail current $I_{SS}$ (1mA) is shared between both branches. The current in each transistor changes linearly with the input:
+
+- **$I_{D1} \approx \frac{I_{SS}}{2} + \frac{g_m V_{id}}{2}$**
+- **$I_{D2} \approx \frac{I_{SS}}{2} - \frac{g_m V_{id}}{2}$**
+
+As $V_{in1}$ increases, $M_1$ takes more of the 1mA current, and $M_2$ takes less, but **neither transistor is cut off yet.**
+
+---
+
+### 2. Output Voltage Effect
+Since the currents are changing linearly, the output voltage at $V_{out1}$ and $V_{out2}$ will track the input signal accurately without significant distortion.
+
+**Differential Output Formula:**
+$$V_{out1} - V_{out2} = -g_m \cdot R_d \cdot V_{id}$$
+
+**For your circuit:**
+* The output will be a **sine wave** (if the input is a sine wave).
+* The gain remains constant at approximately **5.29 V/V**.
+* The output signal will be "clean" and follow the shape of the input.
+
+---
+
+### 3. What happens at the Boundary?
+When $V_{id}$ reaches exactly $\sqrt{2}V_{ov}$:
+* **One transistor carries the entire 1mA tail current.**
+* **The other transistor carries zero current (reaches the edge of cutoff).**
+
+Beyond this point ($V_{id} > \sqrt{2}V_{ov}$), the amplifier **saturates**. The output will "flat-top" or clip because the current cannot increase further than the 1mA provided by the tail source.
+
+---
+
+### 📋 Operation Summary
+
+| Condition | Transistor Status | Output Behavior |
+| :--- | :--- | :--- |
+| **$V_{id} < \sqrt{2}V_{ov}$** | Both M1, M2 are **ON** | **Linear Amplification** (No Clipping) |
+| **$V_{id} = \sqrt{2}V_{ov}$** | One is maxed, one is at 0 | **Edge of Saturation** |
+| **$V_{id} > \sqrt{2}V_{ov}$** | One is **OFF** | **Output Clipping** (Distortion) |
+
+> 
+# vid>root2 Vov
+
+## ⚠️ Operation for $V_{id} > \sqrt{2}V_{ov}$ (Current Steering/Clipping)
+
+When the input difference is larger than $\sqrt{2}V_{ov}$, the differential pair can no longer amplify the signal linearly. The tail current is completely "steered" into one of the two transistors.
+
+---
+
+### 1. Transistor States (The "Switch" Effect)
+In this condition:
+- **One transistor ($M_1$ or $M_2$)** carries the **entire 1mA** tail current.
+- **The other transistor** is completely **OFF** (Cutoff), carrying 0mA.
+
+
+
+### 2. Output Voltage Saturation (Clipping)
+Since the current in the branches can no longer increase (it is limited by the 1mA tail source), the output voltage reaches its maximum possible "swing" and stays there. This is known as **Clipping**.
+
+**Maximum Output Levels:**
+- **$V_{out,min}$**: $V_{DD} - (I_{SS} \cdot R_d) = 0.9V - (1mA \cdot 1.8k\Omega) = \mathbf{0V}$
+- **$V_{out,max}$**: $V_{DD} - (0 \cdot R_d) = \mathbf{0.9V}$
+
+The differential output ($V_{out1} - V_{out2}$) will flat-line at $\pm 0.9V$.
+
+---
+
+### 3. Visual Changes in the Output Waveform
+If you run a **Transient Analysis (`.tran`)**, you will see the following:
+
+- **Shape Distortion:** A sine wave input will turn into a **Square-like wave** with "flat tops."
+- **Gain Drop:** The "Small-Signal Gain" ($A_v$) effectively drops to zero at the peaks because $dV_{out} / dV_{in} = 0$.
+- **Harmonic Distortion:** The output will contain high-frequency harmonics because it is no longer a pure sine wave.
+
+---
+
+### 📋 Comparison Table
+
+| Feature | Linear ($V_{id} < \sqrt{2}V_{ov}$) | Saturated ($V_{id} > \sqrt{2}V_{ov}$) |
+| :--- | :--- | :--- |
+| **Current $I_{D1}, I_{D2}$** | Both transistors share current | One is 1mA, one is 0mA |
+| **Output Waveform** | Clean Sine Wave | **Clipped / Flat-topped** |
+| **Transconductance** | Constant $g_m$ | $g_m$ drops to **0** |
+| **Function** | Linear Amplifier | **Comparator / Switch** |
+
+> [!CAUTION]
+> **Your Simulation:** Since your input $V_2$ and $V_3$ have a 0.9V amplitude, your total $V_{id}$ is **1.8V peak-to-peak**. This is massive compared to a typical $\sqrt{2}V_{ov} \approx 0.3V$. You will see extreme clipping in your LTspice results.
+>
+> AC analysis:
+><img width="1278" height="725" alt="AC 1  GREEN" src="https://github.com/user-attachments/assets/562d95d9-40b0-4b14-ac3b-6b1b6e9bed78" />
+
 
 
 > 
