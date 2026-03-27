@@ -107,7 +107,9 @@ $$V_{in,min} = V_{SS} + V_{DS,sat} + V_{GS}$$
 ><img width="641" height="670" alt="transeient 1" src="https://github.com/user-attachments/assets/5b04c618-dcf1-4cf1-abd4-03b87e0b41e8" />
 
 if we increase the vin values then graph will be clipped( square form)
-<img width="1110" height="623" alt="circuit 1 exp4" src="https://github.com/user-attachments/assets/f3a7c168-3344-46f7-933c-78b8c11265ae" />
+<img width="628" height="656" alt="clipped 1" src="https://github.com/user-attachments/assets/7f0d1a3a-b006-4dd0-9a8c-42f59f484646" /><img width="1279" height="695" alt="dc exp4 1" src="https://github.com/user-attachments/assets/07da19b2-d1ab-46f4-aabb-832e838bf6c2" />
+
+
 
 ## 📈 Small-Signal Differential Gain ($A_d$) Analysis
 
