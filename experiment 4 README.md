@@ -133,15 +133,15 @@ To get an accurate gain, we first find $g_m$. Using the branch current ($I_D = 0
 $$g_m = \sqrt{2 \mu_n C_{ox} \frac{W}{L} I_D} \quad \text{or} \quad g_m = \frac{2 I_D}{V_{GS} - V_{th}}$$
 
 *Assuming typical 0.18µm parameters ($V_{ov} \approx 0.2\text{V}$):*
-- $g_m = \frac{2 \cdot 0.5\text{mA}}{0.2\text{V}} = \mathbf{5\text{mS (mA/V)}}$
+- $g_m = \frac{2 \cdot 0.5\text{mA}}{0.34\text{V}} = \mathbf{2.94\text{mS (mA/V)}}$
 
 ---
 
 ### 3. Final Gain Calculation
 Plugging the values into the gain equation:
 
-$$A_d = -(5\text{mS}) \cdot (1.8\text{k}\Omega)$$
-$$A_d = \mathbf{-9 \text{ V/V}}$$
+$$A_d = -(2.94\text{mS}) \cdot (1.8\text{k}\Omega)$$
+$$A_d = \mathbf{-5.29\text{ V/V}}$$
 
 **In Decibels (dB):**
 $$Gain(dB) = 20 \cdot \log_{10}(9) \approx \mathbf{19.1\text{dB}}$$
