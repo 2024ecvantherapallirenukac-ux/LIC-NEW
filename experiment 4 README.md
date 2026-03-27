@@ -1,6 +1,6 @@
-DIFFERENTIAL AMPLIFIER
+#####DIFFERENTIAL AMPLIFIER
 
-CIRCUIT 1
+###CIRCUIT 1
 
  # Aim:
 
@@ -167,6 +167,16 @@ $$Gain(dB) = 20 \cdot \log_{10}(5.29) \approx \mathbf{14.46\text{dB}}$$
 
 # practical gain
 
+Measured peak-to-peak value
+            Measured peak-to-peak values:
+* **Input Voltage:** $V_{in(p-p)} = 100\text{mV} - (-100\text{mV}) = 200\text{mV}$
+* **Output Voltage:** $V_{out(p-p)} = 602\text{mV} - (-602\text{mV}) = 1204\text{mV}$
+
+* AV= voutp-p/vinp-p
+
+* 1204/200 === 6.02
+
+* V(DB) =20 *log(6.02) = 15.59
 
 
 
@@ -178,6 +188,9 @@ When the differential input voltage V_{id} (the difference between your two inpu
 ## 📉 Operation for $V_{id} < \sqrt{2}V_{ov}$ (Linear Region)
 
 When the differential input $V_{id}$ is small, both transistors ($M_1$ and $M_2$) remain **ON** and conduct a portion of the tail current. This is the intended operating range for an amplifier.
+<img width="641" height="670" alt="transeient 1" src="https://github.com/user-attachments/assets/7c8218f9-dfaf-4aa2-bf37-64e4bd0f1f14" />
+
+
 
 ---
 
@@ -204,10 +217,7 @@ $$V_{out1} - V_{out2} = -g_m \cdot R_d \cdot V_{id}$$
 
 ---
 
-### 3. What happens at the Boundary?
-When $V_{id}$ reaches exactly $\sqrt{2}V_{ov}$:
-* **One transistor carries the entire 1mA tail current.**
-* **The other transistor carries zero current (reaches the edge of cutoff).**
+
 
 Beyond this point ($V_{id} > \sqrt{2}V_{ov}$), the amplifier **saturates**. The output will "flat-top" or clip because the current cannot increase further than the 1mA provided by the tail source.
 
@@ -227,6 +237,7 @@ Beyond this point ($V_{id} > \sqrt{2}V_{ov}$), the amplifier **saturates**. The 
 ## ⚠️ Operation for $V_{id} > \sqrt{2}V_{ov}$ (Current Steering/Clipping)
 
 When the input difference is larger than $\sqrt{2}V_{ov}$, the differential pair can no longer amplify the signal linearly. The tail current is completely "steered" into one of the two transistors.
+<img width="628" height="656" alt="clipped 1" src="https://github.com/user-attachments/assets/954e407c-810f-45fc-bf2a-13a0be5e6198" />
 
 ---
 
@@ -273,6 +284,21 @@ If you run a **Transient Analysis (`.tran`)**, you will see the following:
 ><img width="1278" height="725" alt="AC 1  GREEN" src="https://github.com/user-attachments/assets/562d95d9-40b0-4b14-ac3b-6b1b6e9bed78" />
 
 
+AV = 14.33db
+
+AV-3 =13.33-3= 10.33
+
+FL=0HZ
+
+FH =  7. 21HZ
+
+BW = 7.21
+
+UGB = AV * BW 
+
+UGB = 74.47 
+
+### CIRCUIT 2
 
 > 
 
