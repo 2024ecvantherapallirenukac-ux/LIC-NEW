@@ -1,4 +1,4 @@
-#####DIFFERENTIAL AMPLIFIER
+<img width="1068" height="647" alt="CIRCUIT2" src="https://github.com/user-attachments/assets/6829741e-ecc2-4387-9c51-3184c948c0e4" />#####DIFFERENTIAL AMPLIFIER
 
 ###CIRCUIT 1
 
@@ -298,9 +298,44 @@ UGB = AV * BW
 
 UGB = 74.47 
 
-### CIRCUIT 2
+   ######## CIRCUIT 2
 
-> 
+> ![Uploading CIRCUIT2.png<img width="628" height="656" alt="clipped 1" src="https://github.com/user-attachments/assets/ff6bf965-5b9c-4b01-a2a6-d22bd9d31cb1" /><img width="1279" height="695" alt="dc exp4 1" src="https://github.com/user-attachments/assets/0a6c0537-9892-45ca-94ef-0d2fe47b1ac3" />
+…]()
+
+"Active load functionality is provided by the $M_3$–$M_4$ PMOS current mirror. $M_3$ serves as the diode-connected reference, while $M_4$ mirrors the current to the opposite branch, achieving a much higher output resistance than possible with standard resistors."
+
+GIVEN PARAMETERS
+
+### Design Specifications
+
+| Parameter | Symbol | Value |
+| :--- | :--- | :--- |
+| **Supply Voltage (Positive)** | $V_{DD}$ | $+0.9\text{V}$ |
+| **Supply Voltage (Negative)** | $V_{SS}$ | $-0.9\text{V}$ |
+| **Power Constraint** | $P$ | $\= 1.8\text{mW}$ |
+| **Channel Length** | $L_n$ | $480\text{nm}$ |
+| **Input Common-Mode Voltage** | $V_{in,CM}$ | $0\text{V}$ |
+| **Output Common-Mode Voltage** | $V_{O,CM}$ | $0\text{V}$ |
+| **Tail Node Voltage** | $V_p$ | $-0.7\text{V}$ |
+| **Load Capacitance** | $C_L$ | $10\text{pF}$ |
+| **Threshold Voltage** | $V_T$ | $\approx 0.36\text{V}$ |
+
+### Power  Analysis
+
+The total power consumed by the differential amplifier is calculated using the total voltage swing and the tail current ($I_{SS}$):
+
+$$P = (V_{DD} - V_{SS}) \cdot I_{SS}$$
+
+**1. Total Supply Voltage:**
+$$V_{DD} - V_{SS} = 0.9\text{V} - (-0.9\text{V}) = 1.8\text{V}$$
+
+**2. Maximum Allowed Power:**
+Given the constraint $P \le 1.8\text{mW}$:
+$$1.8\text{V} \cdot I_{SS} \= 1.8 \times 10^{-3}\text{W}$$
+
+**3. Maximum Tail Current:**
+$$I_{SS} \= 1\text{mA}$$
 
 
 
