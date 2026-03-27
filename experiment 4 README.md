@@ -332,10 +332,78 @@ $$V_{DD} - V_{SS} = 0.9\text{V} - (-0.9\text{V}) = 1.8\text{V}$$
 
 **2. Maximum Allowed Power:**
 Given the constraint $P \le 1.8\text{mW}$:
-$$1.8\text{V} \cdot I_{SS} \= 1.8 \times 10^{-3}\text{W}$$
+$$1.8\text{V} \cdot I_{SS} \e 1.8 \times 10^{-3}\text{W}$$
 
 **3. Maximum Tail Current:**
 $$I_{SS} \= 1\text{mA}$$
+
+### Quiescent Current Distribution
+
+Under zero differential input ($V_{in,diff} = 0$), the tail current splits equally between the two branches of the differential pair:
+
+$$I_{D1} = I_{D2} = \frac{I_{SS}}{2}$$
+
+**Substituting the previously calculated $I_{SS}$:**
+
+$$I_{D1} = I_{D2} = \frac{1\text{mA}}{2}$$
+
+
+
+$$I_{D1} = I_{D2} = 0.5\text{mA}$$
+
+### NMOS Differential Pair DC Analysis ($M_1, M_2$)
+
+
+$$V_{G1} = V_{G2} = 0\text{V}$$
+
+**1. Source Node Voltage** From the design specifications, the tail node voltage ($V_p$) is the source voltage for $M_1$ and $M_2$:
+$$V_p = V_S = -0.7\text{V}$$
+
+**2. Gate-Source Voltage ($V_{GS}$)** $$V_{GS} = V_G - V_S = 0\text{V} - (-0.7\text{V})$$
+$$V_{GS} = 0.7\text{V}$$
+
+**3. Overdrive Voltage ($V_{OV}$)** Using the threshold voltage $V_T \approx 0.36\text{V}$:
+$$V_{OV} = V_{GS} - V_T = 0.7\text{V} - 0.36\text{V}$$
+$$V_{OV} = 0.34\text{V}$$
+
+**4. Drain-Source Voltage ($V_{DS}$)** Given the output common-mode voltage $V_{O,CM} = 0\text{V}$:
+$$V_D = 0\text{V}$$
+$$V_{DS} = V_D - V_S = 0\text{V} - (-0.7\text{V})$$
+$$V_{DS} = 0.7\text{V}$$
+
+**5. Saturation Condition Check** For saturation, the condition $V_{DS} > V_{OV}$ must be met:
+$$0.7\text{V} > 0.34\text{V}$$
+> **Conclusion:** Both $M_1$ and $M_2$ are operating correctly in the **saturation region**.
+>
+> M5(NMOS)
+>
+VP = VD = -0.7V
+
+VSS = VS =-0.9V
+
+VDS = 0.2V
+
+VDS=> VOV = 0.2V
+
+### Tail Transistor DC Analysis ($M_5$)
+
+The gate-source and gate voltages are calculated based on the required overdrive voltage ($V_{OV}$) and the negative supply rail ($V_{SS}$):
+
+**1. Gate-Source Voltage ($V_{GS}$)** Using the threshold voltage $V_T \approx 0.36\text{V}$ and a design overdrive $V_{OV} = 0.2\text{V}$:
+$$V_{GS} = V_T + V_{OV}$$
+$$V_{GS} = 0.36\text{V} + 0.2\text{V} = 0.56\text{V}$$
+
+**2. Gate Voltage ($V_G$)** Since the source is connected to the negative supply rail $V_{SS} = -0.9\text{V}$:
+$$V_G = V_S + V_{GS}$$
+$$V_G = -0.9\text{V} + 0.56\text{V} = -0.34\text{V}$$
+
+IF WE TAKE vg has -0.35v also it will satisify the saturation region
+
+
+**3. Saturation Condition Check** To ensure the transistor remains in the saturation region to act as a constant current source, the condition $V_{DS} \ge V_{OV}$ must be satisfied:
+$$V_{DS} \ge 0.2\text{V}$$
+
+
 
 
 
