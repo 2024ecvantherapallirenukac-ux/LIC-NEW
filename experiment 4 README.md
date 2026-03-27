@@ -300,7 +300,7 @@ UGB =  74.47
 
    ######## CIRCUIT 2
 
-><img width="628" height="656" alt="clipped 1" src="https://github.com/user-attachments/assets/6ed64915-7b79-42f7-9fa7-496dfb837621" />
+
 <img width="1068" height="647" alt="CIRCUIT2" src="https://github.com/user-attachments/assets/7f53f447-79a4-4fd1-95a8-5acdde94788d" />
 
 
