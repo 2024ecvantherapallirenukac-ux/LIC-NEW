@@ -76,10 +76,10 @@ To prevent $M_1/M_2$ from entering the triode region, the gate voltage must stay
 **Formula:**
 $$V_{in,max} = V_{DD} - (I_D \cdot R_d) + V_{th}$$
 
-**Calculation (Assuming $V_{th} \approx 0.4V$):**
+**Calculation (Assuming $V_{th} \approx 0.36V$):**
 * $V_{in,max} = 0.9V - (0.5mA \cdot 1.8k\Omega) + 0.4V$
-* $V_{in,max} = 0.9V - 0.9V + 0.4V$
-* **$V_{in,max} = 0.4V$**
+* $V_{in,max} = 0.9V - 0.9V + 0.36V$
+* **$V_{in,max} = 0.36V$**
 
 ---
 
@@ -90,8 +90,8 @@ To ensure the tail current source $I_1$ has enough "headroom" ($V_{DS,sat} \appr
 $$V_{in,min} = V_{SS} + V_{DS,sat} + V_{GS}$$
 
 **Calculation (Assuming $V_{GS} \approx 0.6V$):**
-* $V_{in,min} = -0.9V + 0.2V + 0.6V$
-* **$V_{in,min} = -0.1V$**
+* $V_{in,min} = -0.9V + 0.7 - 0.6V$
+* **$V_{in,min} = -0.9v$**
 
 ---
 
@@ -102,8 +102,66 @@ $$V_{in,min} = V_{SS} + V_{DS,sat} + V_{GS}$$
 | **Upper Limit ($V_{in,max}$)** | Saturation of $M_1, M_2$ | **+0.4V** |
 | **Lower Limit ($V_{in,min}$)** | Tail Source Headroom | **-0.1V** |
 
-> [!NOTE]
-> For linear amplification, your input common-mode signal must stay between **-0.1V and +0.4V**.
+
+> For linear amplification, input common-mode signal must stay between **-0.9V and +0.36V**.
+><img width="641" height="670" alt="transeient 1" src="https://github.com/user-attachments/assets/5b04c618-dcf1-4cf1-abd4-03b87e0b41e8" />
+
+if we increase the vin values then graph will be clipped( square form)
+<img width="1110" height="623" alt="circuit 1 exp4" src="https://github.com/user-attachments/assets/f3a7c168-3344-46f7-933c-78b8c11265ae" />
+
+## 📈 Small-Signal Differential Gain ($A_d$) Analysis
+
+The **Differential Gain ($A_d$)** defines how much the difference between the two input signals ($V_{in1} - V_{in2}$) is amplified at the output ($V_{out1} - V_{out2}$).
+
+---
+
+### 1. Fundamental Formula
+For a MOSFET differential pair with resistive loads, the gain is given by:
+
+$$A_d = -g_m \cdot R_d$$
+
+Where:
+- **$g_m$**: Transconductance of the NMOS transistors ($M_1, M_2$).
+- **$R_d$**: Drain resistance ($1.8\text{k}\Omega$).
+
+---
+
+### 2. Calculating Transconductance ($g_m$)
+To get an accurate gain, we first find $g_m$. Using the branch current ($I_D = 0.5\text{mA}$):
+
+**Formula:**
+$$g_m = \sqrt{2 \mu_n C_{ox} \frac{W}{L} I_D} \quad \text{or} \quad g_m = \frac{2 I_D}{V_{GS} - V_{th}}$$
+
+*Assuming typical 0.18µm parameters ($V_{ov} \approx 0.2\text{V}$):*
+- $g_m = \frac{2 \cdot 0.5\text{mA}}{0.2\text{V}} = \mathbf{5\text{mS (mA/V)}}$
+
+---
+
+### 3. Final Gain Calculation
+Plugging the values into the gain equation:
+
+$$A_d = -(5\text{mS}) \cdot (1.8\text{k}\Omega)$$
+$$A_d = \mathbf{-9 \text{ V/V}}$$
+
+**In Decibels (dB):**
+$$Gain(dB) = 20 \cdot \log_{10}(9) \approx \mathbf{19.1\text{dB}}$$
+
+---
+
+### 📋 Gain Summary Table
+
+| Parameter | Symbol | Estimated Value |
+| :--- | :--- | :--- |
+| **Transconductance** | $g_m$ | $5\text{mS}$ |
+| **Load Resistance** | $R_d$ | $1.8\text{k}\Omega$ |
+| **Differential Gain** | $A_d$ | **9 V/V (19.1 dB)** |
+| **Output Type** | Differential | $V_{out1} - V_{out2}$ |
+
+> [!TIP]
+> **Simulation Note:** To verify this in LTspice, run the `.ac` analysis and plot `V(Vout1, Vout2) / V(V2, V3)`. The "negative" sign in the formula simply indicates a 180° phase shift between the input and output.
+
+
+> 
 
 
 
