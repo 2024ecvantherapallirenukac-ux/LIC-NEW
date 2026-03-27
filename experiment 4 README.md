@@ -266,10 +266,10 @@ If you run a **Transient Analysis (`.tran`)**, you will see the following:
 | **Transconductance** | Constant $g_m$ | $g_m$ drops to **0** |
 | **Function** | Linear Amplifier | **Comparator / Switch** |
 
-> [!CAUTION]
-> **Your Simulation:** Since your input $V_2$ and $V_3$ have a 0.9V amplitude, your total $V_{id}$ is **1.8V peak-to-peak**. This is massive compared to a typical $\sqrt{2}V_{ov} \approx 0.3V$. You will see extreme clipping in your LTspice results.
 >
-> AC analysis:
+> **Your Simulation:** Since your input $V_2$ and $V_3$ have a 0.9V amplitude, your total $V_{id}$ is **1.8V peak-to-peak**. This is massive compared to a typical $\sqrt{2}V_{ov} \approx 0.3V$. You will see extreme clipping in  LTspice results.
+>
+> # AC analysis:
 ><img width="1278" height="725" alt="AC 1  GREEN" src="https://github.com/user-attachments/assets/562d95d9-40b0-4b14-ac3b-6b1b6e9bed78" />
 
 
