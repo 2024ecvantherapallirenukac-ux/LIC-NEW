@@ -700,7 +700,245 @@ FL = 0 and FH = 3GHZ
    = 2.48* 3 
 
    = 7.44GHz
+
+
+   ### circuit 3 
+
    
+   <img width="911" height="626" alt="circuit 3 " src="https://github.com/user-attachments/assets/ec4a7058-ad5e-42c7-90dd-4375878c2905" />
+
+   ### 3.1 Power Constraint Analysis
+
+**Supply Voltage Differential:**
+[cite_start]$$V_{DD} - V_{SS} = 0.9\text{V} - (-0.9\text{V}) = 1.8\text{V}$$ [cite: 8]
+
+**Constraint Equation:**
+[cite_start]$$P = (V_{DD} - V_{SS}) \cdot I_{SS}$$ [cite: 89, 96]
+[cite_start]$$P \le 1.8 \times 10^{-3}\text{ W}$$ [cite: 96]
+
+**Tail Current ($I_{SS}$) Derivation:**
+$$1.8 \cdot I_{SS} \le 1.8 \times 10^{-3}$$
+$$I_{SS} \le 1\text{ mA}$$
+
+**Design Choice:**
+* **$I_{SS} = 1\text{ mA}$** [cite: 27]
+* **$P_{dissipation} = 1.8\text{ mW}$** [cite: 96]
+* **Status:** Pass (Satisfies Constraint)
+
+---
+
+### 3.2 Drain Current Calculation ($I_D$)
+
+**Operating Condition:**
+* [cite_start]$V_{in1} = V_{in2}$ (Symmetric/Balanced) [cite: 9, 23, 24]
+
+**Current Distribution:**
+[cite_start]$$I_{D1} = I_{D2} = \frac{I_{SS}}{2}$$ [cite: 20, 21, 27]
+
+**Substitution:**
+$$I_{D1} = I_{D2} = \frac{1\text{ mA}}{2}$$
+$$I_{D1} = I_{D2} = 0.5\text{ mA}$$
+
+ 3.3 Drain-Source Voltage Calculation ($V_{DS}$)
+
+**Output Common-Mode Voltage ($V_{OCM}$):**
+$$V_{OCM} = 0V$$
+$$V_{D} = 0V$$
+
+---
+
+**Drain-Source Voltage ($V_{DS}$) Derivation:**
+$$V_{DS} = V_{D} - V_{P}$$
+
+**Substitution:**
+* [cite_start]$V_{D} = 0V$ [cite: 9]
+* [cite_start]$V_{P} = -0.7V$ [cite: 10, 25]
+
+$$V_{DS} = 0V - (-0.7V)$$
+
+**Result:**
+$$V_{DS} = 0.7V$$
+
+### 3.4 Gate-Source and Overdrive Voltage Calculation
+
+**Input Voltages ($V_{G1,2}$):**
+$$V_{G1} = V_{G2} = 0V$$
+
+**Source Node Voltage ($V_P$):**
+$$V_P = V_S = -0.7V$$
+
+---
+
+**Gate-Source Voltage ($V_{GS}$) Derivation:**
+$$V_{GS} = V_{G} - V_{S}$$
+
+
+* $V_G = 0V$
+* $V_S = -0.7V$
+
+$$V_{GS} = 0V - (-0.7V)$$
+
+$$V_{GS} = 0.7V$$
+
+---
+
+**Overdrive Voltage ($V_{OV}$) Derivation:**
+$$V_{OV} = V_{GS} - V_{THn}$$
+
+
+* $V_{GS} = 0.7V$
+* $V_{THn} = 0.36V$
+
+$$V_{OV} = 0.7V - 0.36V$$
+
+$$V_{OV} = 0.34V$$
+
+### 3.5 Saturation Region Verification
+
+**Drain-Source Voltage ($V_{DS}$):**
+$$V_{DS} = V_{D} - V_{S}$$
+$$V_{DS} = 0V - (-0.7V) = 0.7V$$
+
+---
+
+**Overdrive Voltage ($V_{OV}$):**
+$$V_{OV} = 0.34V$$
+
+---
+
+**Condition for Saturation:**
+$$V_{DS} > V_{OV}$$
+
+**Substitution:**
+$$0.7V > 0.34V$$ ( it is in sat region )
+
+### 3.6 Tail Current Source Analysis ($M_5$)
+
+**Node Potentials:**
+* **Source Voltage ($V_S$):** $V_{SS} = -0.9V$
+* **Drain Voltage ($V_D$):** $V_P = -0.7V$
+
+---
+
+**Drain-Source Voltage ($V_{DS5}$) Derivation:**
+$$V_{DS5} = V_D - V_S$$
+$$V_{DS5} = -0.7V - (-0.9V)$$
+**Result:**
+$$V_{DS5} = 0.2V$$
+
+---
+
+**Saturation Condition Check:**
+To maintain saturation:
+$$V_{DS5} \ge V_{OV5}$$
+Since $V_{DS5} = 0.2V$, we set the overdrive voltage **$V_{OV5} = 0.2V$**.
+
+---
+
+**Gate-Source Voltage ($V_{GS5}$) Derivation:**
+Using $V_{THn} = 0.36V$:
+$$V_{GS5} = V_{THn} + V_{OV5}$$
+$$V_{GS5} = 0.36V + 0.2V$$
+**Result:**
+$$V_{GS5} = 0.56V$$
+
+---
+
+**Gate Bias Voltage ($V_{G5}$) Calculation:**
+$$V_{G5} = V_{GS5} + V_S$$
+$$V_{G5} = 0.56V - 0.9V$$
+**Result:**
+$$V_{G5} = -0.34V$$
+
+Pmos active load ( M3 )
+
+VSD3 = 0.9-VG3 -0.39
+
+0..9 = 0.9 -VG3-0.39V
+
+VG3 = -0.39V
+
+### 3.7 Tail Transistor Width Calculation ($W_5$)
+
+**Design Parameters:**
+* **Drain Current ($I_{D5}$):** $1\text{ mA}$
+* **Channel Length ($L$):** $480\text{ nm}$
+* [cite_start]**Overdrive Voltage ($V_{OV5}$):** $0.2\text{ V}$ [cite: 1]
+* **Process Parameter ($\mu_n C_{ox}$):** $2.3060 \times 10^{-4}\text{ A/V}^2$
+
+---
+
+**Width ($W_5$) Derivation:**
+$$W_5 = \frac{2 \cdot I_{D5} \cdot L}{\mu_n C_{ox} \cdot V_{OV5}^2}$$
+
+**Substitution:**
+$$W_5 = \frac{2 \times (1 \times 10^{-3}) \times (480 \times 10^{-9})}{2.3060 \times 10^{-4} \times (0.2)^2}$$
+
+**Step-by-Step Calculation:**
+* **Numerator:** $960 \times 10^{-12}$
+* **Denominator:** $9.224 \times 10^{-6}$
+
+= 104.07
+
+### 3.8 NMOS Differential Pair Width Calculation ($W_1, W_2$)
+
+**Design Parameters:**
+* [cite_start]**Drain Current ($I_{D1,2}$):** $0.5\text{ mA}$ [cite: 8, 27]
+* **Channel Length ($L$):** $480\text{ nm}$ [cite: 95]
+* **Overdrive Voltage ($V_{OV}$):** $0.34\text{ V}$ 
+* **Process Parameter ($\mu_n C_{ox}$):** $2.306 \times 10^{-4}\text{ A/V}^2$
+
+---
+
+**Width ($W$) Derivation:**
+$$W_{1,2} = \frac{2 \cdot I_{D1,2} \cdot L}{\mu_n C_{ox} \cdot V_{OV}^2}$$
+
+**Substitution:**
+$$W_{1,2} = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{2.306 \times 10^{-4} \times (0.34)^2}$$
+
+**Step-by-Step Calculation:**
+* **Numerator:** $480 \times 10^{-12}$
+* **Denominator:** $2.665 \times 10^{-5}$
+
+
+= 18um
+
+### 3.9 PMOS Active Load Width Calculation ($W_3, W_4$)
+
+**Design Parameters:**
+* [cite_start]**Drain Current ($I_{D3,4}$):** $0.5\text{ mA}$ [cite: 8, 27]
+* **Channel Length ($L$):** $480\text{ nm}$ 
+* **Overdrive Voltage ($V_{OVp}$):** $0.25\text{ V}$
+* **Process Parameter ($\mu_p C_{ox}$):** $9.98 \times 10^{-5}\text{ A/V}^2$
+
+---
+
+**Width ($W_p$) Derivation:**
+$$W_{3,4} = \frac{2 \cdot I_{D3,4} \cdot L}{\mu_p C_{ox} \cdot V_{OVp}^2}$$
+
+**Substitution:**
+$$W_{3,4} = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{9.98 \times 10^{-5} \times (0.25)^2}$$
+
+**Step-by-Step Calculation:**
+* **Numerator:** $480 \times 10^{-12}$
+* **Denominator:** $6.2375 \times 10^{-6}$
+
+= 44.8um
+
+###  DC analysis
+
+<img width="539" height="440" alt="circuit DC 3" src="https://github.com/user-attachments/assets/cefbdc5b-2d15-483d-a3ee-43da3644c119" />
+
+W(M1,M3 ) = 22UM , Wn (M5) = 194um and wp (M3,M4) = 100u then ID is 0.5mA and ISS = 1mA
+
+####  Transient Analysis
+
+
+
+
+
+
+
 
 
 
