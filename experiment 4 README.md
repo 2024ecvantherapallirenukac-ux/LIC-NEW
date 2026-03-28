@@ -549,6 +549,51 @@ $$A_d(dB) = 20 \log_{10}(41.7)$$
 
 > **Calculated  Gain: $\approx 32.4\text{ dB}$**
 >
+> ## Input Common-Mode Range (ICMR) Analysis
+
+The **Input Common-Mode Range (ICMR)** defines the swing limits for the input voltage ($V_{ICM}$) such that all transistors ($M_1$ through $M_5$) remain in the **Saturation Region**. 
+
+---
+
+### 1. Minimum Input Limit ($V_{ICM, min}$)
+For the amplifier to function, the tail current source ($M_5$) must stay in saturation, and the input drivers ($M_1, M_2$) must remain biased "ON."
+
+**Constraint:**
+The input voltage must be high enough to provide the required Gate-Source voltage ($V_{GS}$) for $M_1$ while maintaining the drain voltage of the tail transistor ($M_5$).
+
+$$V_{ICM(min)} = V_{S1} + V_{THn}$$
+
+**Calculation:**
+Given the source voltage $V_{S1} = -0.7V$ and threshold voltage $V_{THn} = 0.36V$:
+* $V_{ICM(min)} = -0.7V + 0.36V$
+* **$V_{ICM(min)} = -0.34V$**
+
+---
+
+### 2. Maximum Input Limit ($V_{ICM, max}$)
+The upper bound is restricted by the requirement that the input transistors ($M_1, M_2$) do not enter the triode region. This happens when the gate voltage rises too close to the drain voltage ($V_D$).
+
+**Constraint:**
+To keep the NMOS drivers in saturation, the gate voltage must not exceed the drain voltage by more than one threshold voltage:
+$$V_{ICM(max)} = V_{D} + V_{THn}$$
+
+*Note: In this specific load-balanced configuration, we observe the PMOS transition point.*
+
+**Calculation:**
+Using the drain node potential $V_D \approx 0V$ and the PMOS threshold $|V_{TP}| \approx 0.39V$:
+* $V_{ICM(max)} = 0V + 0.39V$
+* **$V_{ICM(max)} = 0.39V$**
+
+---
+
+### 3. Final ICMR Results
+The allowable range for the common-mode input signal to ensure linear amplification is:
+
+> 
+> **$-0.34V \leq V_{ICM} \leq 0.39V$**
+
+Input signals outside of this window will cause either the tail current source to collapse (lower bound) or the input transistors to enter triode (upper bound), resulting in a significant drop in gain and CMRR.
+>
 > ### DC Analysis
 >
 > <img width="505" height="453" alt="dc circuit 2" src="https://github.com/user-attachments/assets/0d5777de-bddf-4041-9e7a-46e2140d2709" />
