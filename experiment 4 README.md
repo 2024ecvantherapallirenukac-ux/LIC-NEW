@@ -454,15 +454,10 @@ $$W = \frac{960 \times 10^{-12}}{2.365 \times 10^{-4} \times 0.04}$$
 **Step 2: Simplify the Denominator**
 $$W = \frac{960 \times 10^{-12}}{9.46 \times 10^{-6}}$$
 
-**Step 3: Final Result**
-$$W \approx 101.5\text{ \mu m}$$
 
 ---
 
-#### 3. Final Design Result
-> [!TIP]
-> The width for the tail current source transistor is:
-> **$W_{M5} \approx 101.5\text{ \mu m}$**
+
 
 ### NMOS Differential Pair (M1 and M2)
 
