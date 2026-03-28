@@ -586,11 +586,7 @@ Using the drain node potential $V_D \approx 0V$ and the PMOS threshold $|V_{TP}|
 
 ---
 
-### 3. Final ICMR Results
-The allowable range for the common-mode input signal to ensure linear amplification is:
 
-> 
-> **$-0.34V \leq V_{ICM} \leq 0.39V$**
 
 Input signals outside of this window will cause either the tail current source to collapse (lower bound) or the input transistors to enter triode (upper bound), resulting in a significant drop in gain and CMRR.
 >
