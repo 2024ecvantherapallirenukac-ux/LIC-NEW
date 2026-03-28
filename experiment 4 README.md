@@ -1,4 +1,4 @@
-
+### DIFFERENTIAL AMPLIFIER
 
 ###CIRCUIT 1
 
@@ -352,6 +352,31 @@ $$I_{D1} = I_{D2} = \frac{1\text{mA}}{2}$$
 
 $$I_{D1} = I_{D2} = 0.5\text{mA}$$
 
+### PMOS Operating Conditions
+
+**1. Terminal Voltages**
+* **Source ($V_S$):** Connected to $V_{DD} = 0.9V$
+* **Drain ($V_D$):** $0V$
+
+---
+
+**2. Source-Drain Voltage Calculation**
+The source-drain voltage ($V_{SD}$) is determined by the difference between the source and drain potentials:
+
+$$V_{SD} = V_{DD} - V_{D}$$
+$$V_{SD} = 0.9V - 0V$$
+$$V_{SD} = 0.9V$$
+
+---
+
+**3. Saturation Condition**
+For a PMOS transistor to operate in the **Saturation Region**, the following condition must be satisfied:
+
+$$V_{SD} > V_{OV}$$
+
+> 
+> Since $0.9V$ is sufficiently large (typically much greater than the overdrive voltage $V_{OV}$), both PMOS transistors operate in **saturation**.
+
 ### NMOS Differential Pair DC Analysis ($M_1, M_2$)
 
 
@@ -403,6 +428,250 @@ IF WE TAKE vg has -0.35v also it will satisify the saturation region
 
 **3. Saturation Condition Check** To ensure the transistor remains in the saturation region to act as a constant current source, the condition $V_{DS} \ge V_{OV}$ must be satisfied:
 $$V_{DS} \ge 0.2\text{V}$$
+
+### NMOS Current Source (M5)
+
+The width $W$ for the current source transistor $M_5$ is calculated using the following parameters:
+
+#### 1. Given Parameters
+| Parameter | Value |
+| :--- | :--- |
+| **Drain Current ($I_D$)** | $I_{SS} = 1\text{ mA} = 1 \times 10^{-3}\text{ A}$ |
+| **Overdrive Voltage ($V_{OV5}$)** | $0.2\text{ V}$ |
+| **Channel Length ($L$)** | $480\text{ nm} = 480 \times 10^{-9}\text{ m}$ |
+| **Process Transconductance ($\mu_n C_{ox}$)** | $2.365 \times 10^{-4}\text{ A/V}^2$ |
+
+---
+
+#### 2. Calculation Steps
+Substituting the values into the width formula:
+
+$$W = \frac{2 \times (1 \times 10^{-3}) \times (480 \times 10^{-9})}{2.365 \times 10^{-4} \times (0.2)^2}$$
+
+**Step 1: Simplify the Numerator and Square the Overdrive Voltage**
+$$W = \frac{960 \times 10^{-12}}{2.365 \times 10^{-4} \times 0.04}$$
+
+**Step 2: Simplify the Denominator**
+$$W = \frac{960 \times 10^{-12}}{9.46 \times 10^{-6}}$$
+
+**Step 3: Final Result**
+$$W \approx 101.5\text{ \mu m}$$
+
+---
+
+#### 3. Final Design Result
+> [!TIP]
+> The width for the tail current source transistor is:
+> **$W_{M5} \approx 101.5\text{ \mu m}$**
+
+### NMOS Differential Pair (M1 and M2)
+
+The width $W$ for the NMOS transistors is calculated using the saturation current formula:
+
+$$W = \frac{2 \cdot I_D \cdot L}{\mu_n C_{ox} (V_{OV})^2}$$
+
+#### 1. Given Parameters
+| Parameter | Value |
+| :--- | :--- |
+| **Drain Current ($I_D$)** | $0.5\text{ mA} = 0.5 \times 10^{-3}\text{ A}$ |
+| **Overdrive Voltage ($V_{OV}$)** | $0.34\text{ V}$ |
+| **Channel Length ($L$)** | $480\text{ nm} = 480 \times 10^{-9}\text{ m}$ |
+| **Process Transconductance ($\mu_n C_{ox}$)** | $236.5\text{ \mu A/V}^2 = 2.365 \times 10^{-4}\text{ A/V}^2$ |
+
+---
+
+#### 2. Calculation Steps
+Substituting the values into the equation:
+
+$$W = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{2.365 \times 10^{-4} \times (0.34)^2}$$
+
+**Step 1: Simplify the Numerator and Square the Overdrive Voltage**
+$$W = \frac{480 \times 10^{-12}}{2.365 \times 10^{-4} \times 0.1156}$$
+
+**Step 2: Simplify the Denominator**
+$$W = \frac{480 \times 10^{-12}}{2.733 \times 10^{-5}}$$
+
+**Step 3: Final Result**
+$$W \approx 17.56\text{ \mu m}$$
+
+---
+
+#### 3. Final Width Design
+For the differential pair symmetry:
+> **$W_{M1} = W_{M2} \approx 17.6\text{ \mu m}$**
+>
+> ### Theoretical gain
+>
+> ## Small-Signal Analysis & Differential Gain Calculation
+
+This section evaluates the gain performance of the amplifier by accounting for **Channel Length Modulation ($\lambda$)** and the interaction between the NMOS drivers and PMOS active loads.
+
+---
+
+### 1. Output Resistance Calculation ($r_o$)
+To determine the intrinsic output resistance of the MOSFETs, we account for the Early effect using the parameter $\lambda = 0.1\text{ V}^{-1}$.
+
+With a bias current of $I_D = 0.5\text{ mA}$:
+
+$$r_o = \frac{1}{\lambda I_D}$$
+$$r_o = \frac{1}{0.1 \times (0.5 \times 10^{-3})}$$
+$$r_o = 20\text{ k}\Omega$$
+
+#### Effective Node Resistance ($R_{out}$)
+Since the NMOS ($M_1/M_2$) and PMOS ($M_3/M_4$) are in parallel from a small-signal perspective, the total resistance at the output node is:
+
+$$R_{out} = r_{on} \parallel r_{op}$$
+$$R_{out} = 20\text{ k}\Omega \parallel 20\text{ k}\Omega$$
+$$R_{out} = 10\text{ k}\Omega$$
+
+---
+
+### 2. Transconductance Calculation ($g_m$)
+The transconductance represents the sensitivity of the drain current to changes in the gate-source voltage. Using $V_{OV} = 0.24\text{ V}$:
+
+$$g_m = \frac{2 I_D}{V_{OV}}$$
+$$g_m = \frac{2 \times 0.5 \times 10^{-3}}{0.24}$$
+$$g_m \approx 4.17\text{ mS}$$
+
+---
+
+### 3. Differential Gain Determination ($A_d$)
+The total differential gain is the product of the transconductance and the effective output resistance.
+
+#### Linear Gain:
+$$A_d = g_m \times R_{out}$$
+$$A_d = (4.17 \times 10^{-3}) \times (10 \times 10^3)$$
+$$A_d \approx 41.7\text{ V/V}$$
+
+#### Logarithmic Gain (Decibels):
+To express the gain in dB:
+$$A_d(dB) = 20 \log_{10}(41.7)$$
+
+> **Calculated  Gain: $\approx 32.4\text{ dB}$**
+>
+> ### DC Analysis
+>
+> <img width="505" height="453" alt="dc circuit 2" src="https://github.com/user-attachments/assets/0d5777de-bddf-4041-9e7a-46e2140d2709" />
+
+Wn = 30.625 µm  and Wn (M5) = 218.7u and Wp = 38.21u→ Id = 0.5mA
+
+### Transient analysis
+
+<img width="1273" height="697" alt="transeient 2 new" src="https://github.com/user-attachments/assets/c6922271-2ad9-41be-b7e3-6028e464bc28" />
+
+# Practical gain 
+
+  Sine wave
+Frequency = 1kHz
+Amplitude = 5mV (applied differentially)
+DC Offset = 0V
+
+   vin(p-p) = 5m - (-5m) = 10m 
+   vout ( p-p) = 10.4 -(-8.409)= 18.8409v
+
+   AV = vout(p-0)/vin(p-p)
+   AV = 1.8809
+
+   AV (db) = 20 *log(AV)
+       = 5.4873
+
+    ### Differential Input Range Analysis
+
+For the differential pair to remain in its linear operating region and maintain proper current steering, the differential input voltage ($V_{id}$) must satisfy the following condition:
+
+$$|V_{id}| < \sqrt{2} V_{OV}$$
+
+---
+
+#### 1. Given Parameters
+* **Overdrive Voltage ($V_{OV}$):** $0.24\text{ V}$
+
+#### 2. Calculation of the Input Limit
+By substituting the overdrive voltage into the limit formula:
+
+$$\text{Limit} = \sqrt{2} \times V_{OV}$$
+$$\text{Limit} \approx 1.414 \times 0.24\text{ V}$$
+$$\text{Limit} \approx 0.34\text{ V}$$
+
+---
+
+vid (10mv)< 0.34 v
+
+<img width="1273" height="697" alt="transeient 2 new" src="https://github.com/user-attachments/assets/ab439c57-62f5-4515-87d4-8cf964e947c4" />
+
+
+Output waveform is sinusoidal(linear)
+
+### Analysis of Signal Clipping and Non-Linearity
+
+This section examines the behavior of the differential pair when the input signal exceeds the theoretical linear operating limits.
+
+#### 1. Theoretical Boundary
+The maximum differential input voltage ($V_{id}$) for linear operation is defined by:
+
+$$|V_{id, max}| = \sqrt{2} \cdot V_{OV}$$
+
+Given $V_{OV} = 0.24V$:
+$$\sqrt{2} \cdot 0.24V \approx 0.34V$$
+
+---
+
+
+#### 2. Applied Signal Comparison
+The applied differential input voltage ($V_{id}$) is compared against the calculated limit:
+
+* **Applied $|V_{id}|$:** $30V$
+* **Linear Limit:** $0.34V$
+* 
+
+Since $30V \gg 0.34V$, the condition $|V_{id}| > \sqrt{2}V_{OV}$ is met.
+
+---
+<img width="632" height="505" alt="clipped 2" src="https://github.com/user-attachments/assets/6e2e37ca-9f6a-4f9a-9ca4-8e625320b872" />
+
+
+#### 3. Observation & Conclusion
+
+> **Waveform Distortion:**
+> Because the input magnitude is significantly higher than the overdrive-defined limit, the tail current is completely steered into a single branch of the differential pair.
+>
+> 3#### AC analysis
+>
+<img width="1249" height="659" alt="ac 2" src="https://github.com/user-attachments/assets/2c16609c-339e-41f2-9b42-584306af91b6" />
+
+### AC Simulation Results: Bandwidth Analysis
+
+The frequency response was evaluated using an AC simulation to determine the mid-band gain and the associated -3 dB cutoff point.
+
+#### 1. Gain Parameters
+| Description | Value (dB) |
+| :--- | :--- |
+| **Mid-band Gain ($A_v$)** | $5.48\text{ dB}$ |
+| **$-3\text{ dB}$ Reference Point** | $2.48\text{ dB}$ |
+
+---
+
+#### 2. Calculation of Cutoff Magnitude
+To identify the bandwidth or the 3dB frequency ($\omega_H$), we subtract $3\text{ dB}$ from the peak gain:
+
+$$A_{v, -3dB} = A_{v(peak)} - 3\text{ dB}$$
+$$A_{v, -3dB} = 5.48\text{ dB} - 3\text{ dB}$$
+$$A_{v, -3dB} = 2.48\text{ dB}$$
+
+---
+
+FL = 0 and FH = 3GHZ
+
+ Band width = FH - FL = 3GHz
+
+ ### Unity Gain Bandwidth (UGB)
+   = AV*FH
+   = 2.48* 3 
+
+   = 7.44GHz
+   
+
+
 
 
 
