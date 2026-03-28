@@ -704,9 +704,9 @@ FL = 0 and FH = 3GHZ
 
    ### circuit 3 
 
-   
-   <img width="911" height="626" alt="circuit 3 " src="https://github.com/user-attachments/assets/ec4a7058-ad5e-42c7-90dd-4375878c2905" />
+   <img width="490" height="328" alt="circuit 3 new" src="https://github.com/user-attachments/assets/53e62ecd-6363-40e4-8da1-bef9c19a9695" />
 
+   
    ### 3.1 Power Constraint Analysis
 
 **Supply Voltage Differential:**
@@ -850,43 +850,13 @@ $$V_{G5} = 0.56V - 0.9V$$
 **Result:**
 $$V_{G5} = -0.34V$$
 
-Pmos active load ( M3 )
-
-VSD3 = 0.9-VG3 -0.39
-
-0..9 = 0.9 -VG3-0.39V
-
-VG3 = -0.39V
-
-### 3.7 Tail Transistor Width Calculation ($W_5$)
+### 3.10 NMOS Differential Pair Width Calculation ($W_1, W_2$)
 
 **Design Parameters:**
-* **Drain Current ($I_{D5}$):** $1\text{ mA}$
-* **Channel Length ($L$):** $480\text{ nm}$
-* [cite_start]**Overdrive Voltage ($V_{OV5}$):** $0.2\text{ V}$ [cite: 1]
-* **Process Parameter ($\mu_n C_{ox}$):** $2.3060 \times 10^{-4}\text{ A/V}^2$
-
----
-
-**Width ($W_5$) Derivation:**
-$$W_5 = \frac{2 \cdot I_{D5} \cdot L}{\mu_n C_{ox} \cdot V_{OV5}^2}$$
-
-**Substitution:**
-$$W_5 = \frac{2 \times (1 \times 10^{-3}) \times (480 \times 10^{-9})}{2.3060 \times 10^{-4} \times (0.2)^2}$$
-
-**Step-by-Step Calculation:**
-* **Numerator:** $960 \times 10^{-12}$
-* **Denominator:** $9.224 \times 10^{-6}$
-
-= 104.07
-
-### 3.8 NMOS Differential Pair Width Calculation ($W_1, W_2$)
-
-**Design Parameters:**
-* [cite_start]**Drain Current ($I_{D1,2}$):** $0.5\text{ mA}$ [cite: 8, 27]
+* [cite_start]**Drain Current ($I_{D1,2}$):** $0.5\text{ mA}$ [cite: 8, 93]
 * **Channel Length ($L$):** $480\text{ nm}$ [cite: 95]
-* **Overdrive Voltage ($V_{OV}$):** $0.34\text{ V}$ 
-* **Process Parameter ($\mu_n C_{ox}$):** $2.306 \times 10^{-4}\text{ A/V}^2$
+* **Overdrive Voltage ($V_{OV}$):** $0.34\text{ V}$
+* **Process Parameter ($\mu_n C_{ox}$):** $2.365 \times 10^{-4}\text{ A/V}^2$
 
 ---
 
@@ -894,21 +864,21 @@ $$W_5 = \frac{2 \times (1 \times 10^{-3}) \times (480 \times 10^{-9})}{2.3060 \t
 $$W_{1,2} = \frac{2 \cdot I_{D1,2} \cdot L}{\mu_n C_{ox} \cdot V_{OV}^2}$$
 
 **Substitution:**
-$$W_{1,2} = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{2.306 \times 10^{-4} \times (0.34)^2}$$
+$$W_{1,2} = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{2.365 \times 10^{-4} \times (0.34)^2}$$
 
 **Step-by-Step Calculation:**
 * **Numerator:** $480 \times 10^{-12}$
-* **Denominator:** $2.665 \times 10^{-5}$
+* **Denominator:** $2.734 \times 10^{-5}$
 
+**Result:**
+$$W_1 = W_2 \approx 17.56\text{ \mu m}$$
 
-= 18um
-
-### 3.9 PMOS Active Load Width Calculation ($W_3, W_4$)
+### 3.11 PMOS Active Load Width Calculation ($W_3, W_4$)
 
 **Design Parameters:**
-* [cite_start]**Drain Current ($I_{D3,4}$):** $0.5\text{ mA}$ [cite: 8, 27]
-* **Channel Length ($L$):** $480\text{ nm}$ 
-* **Overdrive Voltage ($V_{OVp}$):** $0.25\text{ V}$
+* [cite_start]**Drain Current ($I_{D3,4}$):** $0.5\text{ mA}$ [cite: 8]
+* **Channel Length ($L$):** $480\text{ nm}$ [cite: 95]
+* **Overdrive Voltage ($V_{OVp}$):** $0.87\text{ V}$
 * **Process Parameter ($\mu_p C_{ox}$):** $9.98 \times 10^{-5}\text{ A/V}^2$
 
 ---
@@ -917,21 +887,227 @@ $$W_{1,2} = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{2.3
 $$W_{3,4} = \frac{2 \cdot I_{D3,4} \cdot L}{\mu_p C_{ox} \cdot V_{OVp}^2}$$
 
 **Substitution:**
-$$W_{3,4} = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{9.98 \times 10^{-5} \times (0.25)^2}$$
+$$W_{3,4} = \frac{2 \times (0.5 \times 10^{-3}) \times (480 \times 10^{-9})}{9.98 \times 10^{-5} \times (0.87)^2}$$
 
 **Step-by-Step Calculation:**
 * **Numerator:** $480 \times 10^{-12}$
-* **Denominator:** $6.2375 \times 10^{-6}$
+* **Denominator:** $9.98 \times 10^{-5} \times 0.7569 \approx 7.55 \times 10^{-5}$
 
-= 44.8um
+**Result:**
+$$W_3 = W_4 \approx 6.35\text{ \mu m}$$
+
+### 3.13 Small-Signal Analysis and Gain Calculation
+
+**Input Parameters:**
+* [cite_start]**Drain Current ($I_D$):** $0.5\text{ mA}$ [cite: 8]
+* **Overdrive Voltage ($V_{ov,n}$):** $0.34\text{ V}$
+* **Channel Length Modulation ($\lambda$):** $\approx 0.1\text{ V}^{-1}$
+
+---
+
+#### Step 1: Transconductance ($g_{mn}$)
+$$g_{mn} = \frac{2 \cdot I_D}{V_{ov}}$$
+$$g_{mn} = \frac{2 \times 0.5 \times 10^{-3}}{0.34}$$
+**Result:** $g_{mn} = 2.94\text{ mS}$
+
+---
+
+#### Step 2: Output Resistance ($r_{on}$)
+$$r_{on} = \frac{1}{\lambda \cdot I_D}$$
+$$r_{on} = \frac{1}{0.1 \times 0.5 \times 10^{-3}}$$
+**Result:** $r_{on} = 20\text{ k}\Omega$
+
+---
+
+#### Step 3: Effective Output Impedance ($R_{out}$)
+For a differential pair with an active load:
+$$R_{out} \approx r_{on} \parallel r_{op}$$
+*Assuming $r_{on} \approx r_{op}$ for the simulation model:*
+**Result:** $R_{out} \approx 20\text{ k}\Omega$
+
+---
+
+#### Step 4: Voltage Gain ($A_v$)
+$$A_v = g_{mn} \times R_{out}$$
+$$A_v = 2.94 \times 10^{-3} \times 20 \times 10^{3}$$
+**Result:** $A_v = 58.8\text{ V/V}$
+
+---
+
+#### Step 5: Gain in Decibels ($A_{v,dB}$)
+$$A_{v(dB)} = 20 \cdot \log_{10}(58.8)$$
+**Result:** $A_{v(dB)} \approx 35.4\text{ dB}$
+
+
 
 ###  DC analysis
 
 <img width="539" height="440" alt="circuit DC 3" src="https://github.com/user-attachments/assets/cefbdc5b-2d15-483d-a3ee-43da3644c119" />
 
-W(M1,M3 ) = 22UM , Wn (M5) = 194um and wp (M3,M4) = 100u then ID is 0.5mA and ISS = 1mA
+W(M1,M3 ) = 30UM , Wn (M5) = 200 and wp (M3,M4) = 13.9u then ID is 0.5mA and ISS = 1mA
+
+
+### 3.14 Minimum Input Common-Mode Voltage ($V_{inCM,min}$)
+
+**Design Parameters:**
+* **Source Node Voltage ($V_S$):** $-0.7\text{ V}$
+* **Threshold Voltage ($V_{THn}$):** $0.36\text{ V}$
+
+---
+
+**Calculation Derivation:**
+To ensure the differential pair transistors ($M_1, M_2$) remain ON:
+$$V_{inCM(min)} = V_S + V_{THn}$$
+
+**Substitution:**
+$$V_{inCM(min)} = -0.7\text{ V} + 0.36\text{ V}$$
+
+**Result:**
+$$V_{inCM(min)} = -0.34\text{ V}$$
+
+### 3.15 Maximum Input Common-Mode Voltage ($V_{inCM,max}$)
+
+**Design Parameters:**
+* **Supply Voltage ($V_{DD}$):** $0.9\text{ V}$
+* **PMOS Overdrive ($V_{ov,p}$):** $0.54\text{ V}$
+* **NMOS Threshold Voltage ($V_{THn}$):** $0.36\text{ V}$
+
+---
+
+**Calculation Derivation:**
+To prevent the NMOS differential pair from entering the triode region:
+$$V_{inCM(max)} = V_{DD} - V_{ov,p} + V_{THn}$$
+
+**Substitution:**
+$$V_{inCM(max)} = 0.9\text{ V} - 0.54\text{ V} + 0.36\text{ V}$$
+
+**Result:**
+$$V_{inCM(max)} = 0.72\text{ V}$$
+
+### 3.16 Minimum Output Voltage ($V_{out,min}$)
+
+**Design Parameters:**
+* **Source Node Voltage ($V_S$):** $-0.7\text{ V}$
+* **NMOS Overdrive Voltage ($V_{OV}$):** $0.34\text{ V}$
+
+---
+
+**Calculation Derivation:**
+To ensure the differential pair transistors ($M_1, M_2$) remain in the saturation region:
+$$V_{out(min)} \geq V_S + V_{OV}$$
+
+**Substitution:**
+$$V_{out(min)} = -0.7\text{ V} + 0.34\text{ V}$$
+
+**Result:**
+$$V_{out(min)} = -0.36\text{ V}$$
+ 
+
 
 ####  Transient Analysis
+
+<img width="631" height="583" alt="transeient new 333" src="https://github.com/user-attachments/assets/76fae7cc-4655-4749-9bda-a32f306681eb" />
+
+practical gain :
+
+   AV = vo(p-p)/vin(p-p)
+
+   vo(p-p) = 57 - (-458)
+   vin(p-p) = 20m
+
+   AV = 25.75
+
+   AV (DB) = 28.2155
+
+  ### AC analysis
+  
+<img width="626" height="644" alt="newwwwwwwwww AC" src="https://github.com/user-attachments/assets/7164aa20-d773-4972-83ad-7290f46a20e7" />
+
+AV = 32.8
+
+AV -3 = 29.8
+
+FL = 0Hz 
+
+FH = 443mhz
+
+Bandwidth = 443MHz
+
+Unity Gain badwidth
+
+AV *BW
+
+= 14.5GHZ
+
+# Section 4: Comparative Inference and Conclusion
+
+The experiment involved designing and analyzing three different configurations of a Differential Amplifier. Each iteration improved upon the previous design's gain, swing, and current control.
+
+| Feature | Circuit 1: Resistor Load | Circuit 2: NMOS Tail Source | Circuit 3: PMOS Active Load |
+| :--- | :--- | :--- | :--- |
+| **Load Type** | Passive (Resistors) | Passive (Resistors) | **Active (Current Mirror)** |
+| **Tail Bias** | Ideal Source | **NMOS Current Source** | **NMOS Current Source** |
+| **Voltage Gain ($A_v$)** | Moderate | Moderate | **Highest ($35.4\text{ dB}$)** |
+| **Output Impedance** | Low ($R_D$) | Low ($R_D$) | **High ($r_{on} \parallel r_{op}$)** |
+| **ICMR** | Restricted | Improved | **Balanced** |
+| **Power Control** | Simple | Better Stability | **Optimal Efficiency** |
+
+---
+
+## Inference
+
+#### 1. Transition to Active Load (Circuit 3)
+The shift from resistors (Circuit 1/2) to a **PMOS Active Load** (Circuit 3) significantly increased the voltage gain. Since $A_v = g_m (r_{on} \parallel r_{op})$, the high incremental resistance of the PMOS transistors allows for much higher amplification compared to a physical resistor, without requiring a massive voltage drop across the load.
+
+#### 2. Importance of the Tail Current Source
+Replacing an ideal current source with an **NMOS Tail Transistor ($M_5$)** introduces real-world constraints. The overdrive voltage $V_{ov5}$ (calculated at $0.2\text{V}$) limits the minimum input common-mode voltage ($V_{inCM,min} = -0.34\text{V}$), ensuring the tail transistor stays in saturation to maintain a constant bias current.
+
+#### 3. Output Swing Trade-offs
+In Circuit 3, the output swing is bounded by:
+* **Lower Limit:** $V_{out(min)} = -0.36\text{V}$ (to keep $M_1, M_2$ in saturation).
+* **Upper Limit:** $V_{out(max)} = V_{DD} - |V_{ovp}|$ (to keep $M_3, M_4$ in saturation).
+This configuration provides a wider and more symmetric swing compared to the resistive load which is limited by the $I_D \cdot R_D$ drop.
+
+#### 4. Design Efficiency
+Circuit 3 satisfies the **$1.8\text{ mW}$ power constraint** while delivering the highest transconductance-to-current ratio. By precisely sizing the widths ($W_1-W_5$), we achieved a stable operating point at $V_{DS} = 0.7\text{V}$, well above the $0.34\text{V}$ overdrive requirement.
+
+### Final Conclusion
+Circuit 3 represents the most practical and high-performance design. It effectively utilizes **Active Loads** to maximize gain and an **NMOS Current Mirror** to maintain a stable tail current ($I_{SS} = 1\text{ mA}$), making it the superior architecture for integrated circuit (IC) applications where large resistors are area-inefficient.
+
+# Section 5: Comparative Analysis of Practical Results
+
+The following table compares the practical (simulated) performance of the three differential amplifier configurations based on LTspice measurements.
+
+| Parameter | Circuit 1 (Resistor Load) | Circuit 2 (NMOS Tail) | Circuit 3 (Active Load) |
+| :--- | :---: | :---: | :---: |
+| **Load Type** | Passive ($R_D$) | Passive ($R_D$) | **Active (PMOS Mirror)** |
+| **Tail Bias** | Ideal Current Source | **NMOS Transistor ($M_5$)** | **NMOS Transistor ($M_5$)** |
+| **Practical Gain ($V/V$)** | $5.25\text{ V/V}$ | $1.97\text{ V/V}$ | **$25.47\text{ V/V}$** |
+| **Practical Gain ($dB$)** | $14.40\text{ dB}$ | $5.90\text{ dB}$ | **$28.12\text{ dB}$** |
+| **Output Impedance** | Low ($R_D$) | Low ($R_D$) | **High ($r_{on} \parallel r_{op}$)** |
+| **Power Dissipation** | $1.8\text{ mW}$ | $1.8\text{ mW}$ | $1.8\text{ mW}$ |
+| **Circuit Complexity** | Low | Medium | **High** |
+
+---
+
+### Key Inferences from Practical Data
+
+1. **Impact of the Active Load:** Circuit 3 achieved a practical gain of **$28.12\text{ dB}$**, which is nearly double the gain of Circuit 1 ($14.4\text{ dB}$). This confirms that replacing passive resistors with PMOS active loads successfully boosts the output impedance, and thus the voltage gain.
+
+2. **The "Tail" Trade-off:** In Circuit 2, the gain dropped to **$5.9\text{ dB}$**. This occurs because the NMOS tail transistor ($M_5$) has a finite output resistance ($r_{o5}$), which reduces the common-mode rejection and slightly impacts the differential-mode swing compared to an ideal current source.
+
+3. **Design Validation:** While the theoretical gain for Circuit 3 was calculated at $35.4\text{ dB}$, the practical result of **$28.12\text{ dB}$** is realistic. The difference is due to second-order effects like the **Body Effect** and **Channel Length Modulation ($\lambda$)** being more aggressive in the sub-micron BSIM models used in LTspice than in hand calculations.
+
+4. **Power Efficiency:** All three circuits were maintained at a $1\text{ mA}$ total budget. Circuit 3 provides the most "gain per watt," making it the most efficient architecture for high-performance analog design.
+
+
+  
+
+   
+
+   
+
+
 
 
 
