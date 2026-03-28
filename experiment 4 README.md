@@ -471,7 +471,7 @@ $$W = \frac{2 \cdot I_D \cdot L}{\mu_n C_{ox} (V_{OV})^2}$$
 | **Drain Current ($I_D$)** | $0.5\text{ mA} = 0.5 \times 10^{-3}\text{ A}$ |
 | **Overdrive Voltage ($V_{OV}$)** | $0.34\text{ V}$ |
 | **Channel Length ($L$)** | $480\text{ nm} = 480 \times 10^{-9}\text{ m}$ |
-| **Process Transconductance ($\mu_n C_{ox}$)** | $236.5\text{ \mu A/V}^2 = 2.365 \times 10^{-4}\text{ A/V}^2$ |
+
 
 ---
 
@@ -486,14 +486,9 @@ $$W = \frac{480 \times 10^{-12}}{2.365 \times 10^{-4} \times 0.1156}$$
 **Step 2: Simplify the Denominator**
 $$W = \frac{480 \times 10^{-12}}{2.733 \times 10^{-5}}$$
 
-**Step 3: Final Result**
-$$W \approx 17.56\text{ \mu m}$$
-
 ---
 
-#### 3. Final Width Design
-For the differential pair symmetry:
-> **$W_{M1} = W_{M2} \approx 17.6\text{ \mu m}$**
+
 >
 > ### Theoretical gain
 >
