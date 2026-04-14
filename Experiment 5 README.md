@@ -32,9 +32,6 @@ $$V_{out} = -V_{in} \left( \frac{R_f}{R_1} \right)$$
 The Voltage Gain ($A_V$) is:
 $$A_V = \frac{V_{out}}{V_{in}} = -\frac{R_f}{R_1}$$
 
-### 4. Application to this Design
-With $R_f = 7\text{k}\Omega$ and $R_1 = 1\text{k}\Omega$:
-$$A_V = -\frac{7\text{k}}{1\text{k}} = -7$$
 
 The negative sign indicates a **180° phase inversion**, meaning the output signal is the mirror image of the input signal across the 0V axis.
 
@@ -92,7 +89,7 @@ At low frequency: Gain ≈ 16.9 dB (since Av = 7)
 Gain remains constant up to bandwidth
 After cut-off frequency: Gain decreases
 
-###### Voltage follower 
+###### **Voltage follower **
 
 ### Aim 
 
