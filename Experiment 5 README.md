@@ -89,7 +89,7 @@ At low frequency: Gain ≈ 16.9 dB (since Av = 7)
 Gain remains constant up to bandwidth
 After cut-off frequency: Gain decreases
 
-###### **Voltage follower **
+### Voltage follower 
 
 ### Aim 
 
